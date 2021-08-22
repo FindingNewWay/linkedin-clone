@@ -21,4 +21,11 @@
   align-items: center;
   font-size: 12px;
   font-weight: 400;
+  line-height: 18px;
+  user-select: none;
+}
+@media screen and (max-width:850px){
+  .headerOption__title {
+    display:none;
+  }
 }
