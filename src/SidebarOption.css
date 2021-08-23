@@ -1,0 +1,31 @@
+.SidebarOption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.SidebarOption__title {
+  color: #0a66c2;
+  display: inline;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: left;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+}
+.SidebarOption__title:hover {
+  text-decoration: underline;
+}
+
+.SidebarOption__icon {
+  object-fit: contain;
+  height: 20px !important;
+  width: 20px !important;
+}
+.IconButton {
+  width: 32px;
+  height: 32px;
+}
+.IconButton:hover .SidebarOption__icon {
+  color: black;
+}
