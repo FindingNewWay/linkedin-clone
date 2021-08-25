@@ -12,6 +12,7 @@
   font-weight: 600;
   cursor: pointer;
   width: 100%;
+  user-select: none;
 }
 .SidebarOption__title:hover {
   text-decoration: underline;

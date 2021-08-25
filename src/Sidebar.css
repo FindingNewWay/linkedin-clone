@@ -35,6 +35,7 @@
   line-height: 24px;
   text-align: center;
   padding: 0px 12px;
+  user-select: none;
 }
 .sidebar__profile > h4 {
   color: gray;
@@ -186,6 +187,7 @@
   transition: all 0.1s;
   font-weight: 600;
   color: gray;
+  user-select: none;
 }
 .sidebar__discover:hover {
   animation-name: discover;

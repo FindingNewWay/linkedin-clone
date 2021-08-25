@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InputOption from "./InputOption";
 import ImageIcon from "@material-ui/icons/Image";
 import YouTubeIcon from "@material-ui/icons/YouTube";
@@ -6,17 +6,42 @@ import EventIcon from "@material-ui/icons/Event";
 import PostAddIcon from "@material-ui/icons/PostAdd";
 import Post from "./Post";
 import "./Feed.css";
+import { db } from "./Firebase";
+import firebase from "firebase";
 function Feed() {
   const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    db.collection("posts")
+      .orderBy("timestamp", "desc")
+      .onSnapshot((snapshot) =>
+        setPosts(
+          snapshot.docs.map((doc) => ({
+            id: doc.id,
+            data: doc.data(),
+          }))
+        )
+      );
+  }, []);
   const sendPost = (e) => {
     e.preventDefault();
-    alert("Post!!!");
+    db.collection("posts").add({
+      name: "Nguyen Quy Minh",
+      description: "5,567 followers",
+      message: "test post Firebase",
+      time: "6m",
+      photoUrl:
+        "https://media-exp1.licdn.com/dms/image/C5603AQGenznk6DXhQw/profile-displayphoto-shrink_100_100/0/1628446126361?e=1635379200&v=beta&t=fpysR9Hab7BUiSpwargDbF4YLB_-czFEmSmB_hxwSPc",
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
   };
   return (
     <div className="feed">
       <div className="feed__inputContainer">
         <div className="feed__input">
-          <img src="https://media-exp1.licdn.com/dms/image/C5603AQGenznk6DXhQw/profile-displayphoto-shrink_100_100/0/1628446126361?e=1635379200&v=beta&t=fpysR9Hab7BUiSpwargDbF4YLB_-czFEmSmB_hxwSPc" />
+          <img
+            src="https://media-exp1.licdn.com/dms/image/C5603AQGenznk6DXhQw/profile-displayphoto-shrink_100_100/0/1628446126361?e=1635379200&v=beta&t=fpysR9Hab7BUiSpwargDbF4YLB_-czFEmSmB_hxwSPc"
+            alt=""
+          />
           <button onClick={sendPost} type="submit">
             Start a post
           </button>
@@ -32,16 +57,18 @@ function Feed() {
           />
         </div>
       </div>
-      {posts.map((post) => (
-        <Post />
-      ))}
-      <Post
-        name="Nguyen Quy Minh"
-        description="5,567 followers"
-        message="wow"
-        time="6m"
-        photoUrl="https://media-exp1.licdn.com/dms/image/C5603AQGenznk6DXhQw/profile-displayphoto-shrink_100_100/0/1628446126361?e=1635379200&v=beta&t=fpysR9Hab7BUiSpwargDbF4YLB_-czFEmSmB_hxwSPc"
-      />
+      {posts.map(
+        ({ id, data: { name, description, message, time, photoUrl } }) => (
+          <Post
+            key={id}
+            name={name}
+            description={description}
+            message={message}
+            time={time}
+            photoUrl={photoUrl}
+          />
+        )
+      )}
     </div>
   );
 }
