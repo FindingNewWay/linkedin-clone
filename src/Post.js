@@ -1,7 +1,6 @@
 import React from "react";
 import { Avatar } from "@material-ui/core";
 import "./Post.css";
-import { makeStyles } from "@material-ui/core/styles";
 import { grey } from "@material-ui/core/colors";
 import InputOption from "./InputOption";
 import ThumbUpAltOutlinedIcon from "@material-ui/icons/ThumbUpAltOutlined";
@@ -13,7 +12,7 @@ function Post({ name, description, time, message, photoUrl }) {
   return (
     <div className="post">
       <div className="post__header">
-        <Avatar src={photoUrl}/>
+        <Avatar src={photoUrl} />
         <div className="post__infor">
           <h2>{name}</h2>
           <p>{description}</p>
