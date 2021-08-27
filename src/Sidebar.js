@@ -5,7 +5,10 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import TurnedInIcon from "@material-ui/icons/TurnedIn";
 import SidebarOption from "./SidebarOption.js";
 import AddIcon from "@material-ui/icons/Add";
+import { selectUser } from "./features/userSlice";
+import { useSelector } from "react-redux";
 function Sidebar() {
+  const user = useSelector(selectUser);
   return (
     <div className="sidebar">
       <div className="sidebar__top">
@@ -15,11 +18,8 @@ function Sidebar() {
             alt=""
           />
           <div className="sidebar__user">
-            <Avatar
-              className="sidebar__avatar"
-              src="https://media-exp1.licdn.com/dms/image/C5603AQGenznk6DXhQw/profile-displayphoto-shrink_100_100/0/1628446126361?e=1635379200&v=beta&t=fpysR9Hab7BUiSpwargDbF4YLB_-czFEmSmB_hxwSPc"
-            />
-            <h2>Nguyễn Quý Minh</h2>
+            <Avatar className="sidebar__avatar" src={user.photoUrl}></Avatar>
+            <h2>{user.displayName}</h2>
           </div>
 
           <h4>Ha Noi university of science and technology</h4>

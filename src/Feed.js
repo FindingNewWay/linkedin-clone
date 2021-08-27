@@ -8,9 +8,12 @@ import Post from "./Post";
 import "./Feed.css";
 import { db } from "./Firebase";
 import firebase from "firebase";
+import { selectUser } from "./features/userSlice";
+import { useSelector } from "react-redux";
+
 function Feed() {
   const [posts, setPosts] = useState([]);
-
+  const user = useSelector(selectUser);
   useEffect(() => {
     db.collection("posts")
       .orderBy("timestamp", "desc")
@@ -28,12 +31,11 @@ function Feed() {
     e.preventDefault();
 
     db.collection("posts").add({
-      name: "Nguyen Quy Minh",
-      description: "5,567 followers",
+      name: user.displayName,
+      description: user.email,
       message: "test post Firebase " + Math.random() * 10,
       time: "6m",
-      photoUrl:
-        "https://media-exp1.licdn.com/dms/image/C5603AQGenznk6DXhQw/profile-displayphoto-shrink_100_100/0/1628446126361?e=1635379200&v=beta&t=fpysR9Hab7BUiSpwargDbF4YLB_-czFEmSmB_hxwSPc",
+      photoUrl: user.photoUrl || "",
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
   };

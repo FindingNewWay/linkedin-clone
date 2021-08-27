@@ -10,15 +10,24 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 
 import LinkedIn from "./resources/images/linkedin.png";
 import HeaderOption from "./HeaderOption.js";
-
+import { useDispatch, useSelector } from "react-redux";
+import { auth } from "./Firebase";
+import { logout, selectUser } from "./features/userSlice";
 function Header() {
+  const dispatch = useDispatch();
+  const logoutOfApp = () => {
+    dispatch(logout());
+    auth.signOut();
+  };
+  const user = useSelector(selectUser);
+  console.log(user);
   return (
     <div className="header">
       <div class="header__left">
         <img src={LinkedIn} alt="" />
         <div class="header__search">
           <SearchIcon />
-          <input type="text" />
+          <input placeholder="Search" type="text" />
         </div>
       </div>
       <div className="header__right">
@@ -28,8 +37,9 @@ function Header() {
         <HeaderOption Icon={ChatIcon} title="Messaging" />
         <HeaderOption Icon={NotificationsIcon} title="Notifications" />
         <HeaderOption
-          avatar="https://media-exp1.licdn.com/dms/image/C5603AQGenznk6DXhQw/profile-displayphoto-shrink_200_200/0/1628446126361?e=1635379200&v=beta&t=6Wgv8IfB4NKBkH_PlnRGtPAdKNJ1bsA_dUt5Ml5s7Lo"
-          title="Me"
+          avatar={true}
+          title={user.displayName}
+          onClick={logoutOfApp}
         />
       </div>
     </div>
