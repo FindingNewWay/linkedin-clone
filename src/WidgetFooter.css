@@ -1,0 +1,19 @@
+.WidgetFooter {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-between;
+}
+.WidgetFooter > a {
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  text-decoration-style: none;
+  color: gray;
+  margin-right: 5px;
+}
+.icon {
+  color: gray;
+  height: 16px !important;
+  width: 16px !important;
+}

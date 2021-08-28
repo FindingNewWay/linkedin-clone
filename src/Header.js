@@ -20,7 +20,6 @@ function Header() {
     auth.signOut();
   };
   const user = useSelector(selectUser);
-  console.log(user);
   return (
     <div className="header">
       <div class="header__left">

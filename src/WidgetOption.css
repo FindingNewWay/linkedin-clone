@@ -1,0 +1,12 @@
+.widget-option {
+  line-height: 20px;
+}
+.widget-option > span {
+  font-size: 14px;
+  font-weight: 600;
+}
+.widget-option > p {
+  font-size: 12px;
+  text-align: left;
+  color: gray;
+}

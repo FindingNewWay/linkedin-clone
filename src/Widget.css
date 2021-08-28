@@ -1,0 +1,17 @@
+.widget {
+  flex: 0.2;
+}
+.widget__top {
+  padding: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+.widget__middle {
+  background-color: white;
+}
+.widget__middle__list {
+  padding: 15px;
+  line-height: 24px;
+}
+.widget__bottom {
+}
